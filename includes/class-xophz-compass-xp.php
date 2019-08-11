@@ -153,9 +153,9 @@ class Xophz_Compass_Xp {
 	private function define_admin_hooks() {
 
     $plugin_admin = new Xophz_Compass_Xp_Admin( $this->get_xophz_compass_xp(), $this->get_version() );
-
     $this->define_class_hooks( $plugin_admin );
 	}
+
   private function define_compass_hooks(){
     $this->define_class_hooks( 'Xophz_Compass_Xp_Achievements' );
     $this->define_class_hooks( 'Xophz_Compass_Xp_Abilities' );
@@ -190,7 +190,6 @@ class Xophz_Compass_Xp {
 
 		$plugin_public = new Xophz_Compass_Xp_Public( $this->get_xophz_compass_xp(), $this->get_version() );
 
-    $this->loader->add_action( 'init', $plugin_public, 'create_job_taxonomy' );
 		$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_styles' );
 		$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_scripts' );
 
