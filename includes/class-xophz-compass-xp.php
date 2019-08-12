@@ -116,6 +116,7 @@ class Xophz_Compass_Xp {
     require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/class-xophz-compass-xp-achievements.php';
     require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/class-xophz-compass-xp-abilities.php';
     require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/class-xophz-compass-xp-accessories.php';
+    require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/class-xophz-compass-xp-players.php';
 
     /**
     * The class responsible for defining all actions that occur in the public-facing
@@ -160,6 +161,7 @@ class Xophz_Compass_Xp {
     $this->define_class_hooks( 'Xophz_Compass_Xp_Achievements' );
     $this->define_class_hooks( 'Xophz_Compass_Xp_Abilities' );
     $this->define_class_hooks( 'Xophz_Compass_Xp_Accessories' );
+    $this->define_class_hooks( 'Xophz_Compass_Xp_Players' );
   } 
 
   public function define_class_hooks($class){

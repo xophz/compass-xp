@@ -483,8 +483,10 @@ class Xophz_Compass_Xp_Admin {
     ]);
   }
 
-  public function getUser(){
-    $userId = get_current_user_id();
+  public function getUser($userId=0, $output_json=true){
+    if(!$userId)
+      $userId = get_current_user_id();
+
     $meta_ = "_xp_total_";
 
     $xp =  get_user_meta($userId, "{$meta_}xp", true);
@@ -493,11 +495,15 @@ class Xophz_Compass_Xp_Admin {
     $lvl =  get_user_meta($userId, "{$meta_}lvl", true);
 
     $user = [
+      'id' => (int) $id,
       'xp' => (int) $xp,
       'ap' => (int) $ap,
       'gp' => (int) $gp,
-      'lvl' => (int) $lvl,
+      'level' => (int) $lvl,
     ];
+
+    if(!$output_json)
+      return $user;
 
     Xophz_Compass::output_json($user);
   }
