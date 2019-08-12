@@ -330,17 +330,17 @@ class Xophz_Compass_Xp_Achievements {
 
   public function listAchievements(){
     global $wpdb;
-    $sql = "
-      SELECT 
-      post_id as id
-        FROM {$wpdb->prefix}xp_achievements as a 
-    ";
-
-    $completed = $wpdb->get_results($sql);
-    function theId($record){
-      return $record->id;
-    }
-    $completed = array_map('theId',$completed);
+    // $sql = "
+    //   SELECT 
+    //   post_id as id
+    //     FROM {$wpdb->prefix}xp_achievements as a 
+    // ";
+    //
+    // $completed = $wpdb->get_results($sql);
+    // function theId($record){
+    //   return $record->id;
+    // }
+    // $completed = array_map('theId',$completed);
 
     $args = Xophz_Compass::get_input_json();
     $args = array(
@@ -351,7 +351,7 @@ class Xophz_Compass_Xp_Achievements {
       'orderby'          => 'post_title',
       'order'            => 'ASC',
       // 'include'          => '',
-      'exclude'          => $completed,
+      // 'exclude'          => $completed,
       // 'meta_key'         => '',
       // 'meta_value'       => '',
       'post_type'        => 'xp_achievement',
@@ -364,7 +364,7 @@ class Xophz_Compass_Xp_Achievements {
       // 'fields'           => '',
     );
 
-    $posts = get_posts( $args);
+    $posts = get_posts($args);
 
     $achievements = [];
     foreach ($posts as $p) {
@@ -387,7 +387,7 @@ class Xophz_Compass_Xp_Achievements {
 
     $out = [
       'achievements' => $achievements, 
-      'completed' => $completed
+      // 'completed' => $completed
     ];
 
     Xophz_Compass::output_json($out);
