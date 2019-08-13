@@ -420,7 +420,7 @@ class Xophz_Compass_Xp_Achievements {
       'redo' => 0,
     ];
 
-    $insert = $wpdb->insert("{$wpdb->prefix}xp_achievements",$achieved);
+    $insert = $wpdb->insert("{$wpdb->prefix}xp_achievements", $achieved);
 
     update_user_meta($userId, "{$meta_}xp", $xp );
     update_user_meta($userId, "{$meta_}ap", $ap );
@@ -442,10 +442,10 @@ class Xophz_Compass_Xp_Achievements {
 
     $meta_ = "_xp_total_";
 
-    update_user_meta($userId, "{$meta_}lvl", $args->lvl);
+    update_user_meta($userId, "{$meta_}level", $args->level);
 
     Xophz_Compass::output_json([
-      'lvl' => get_user_meta($userId, $meta_.'lvl',true)
+      'level' => get_user_meta($userId, $meta_.'level',true)
     ]);
   }
 }

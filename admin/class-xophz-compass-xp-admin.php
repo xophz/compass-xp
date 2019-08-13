@@ -333,17 +333,17 @@ class Xophz_Compass_Xp_Admin {
     $user_xp = get_user_meta($user_id, '_xp_total_xp', true) ;
     $user_ap = get_user_meta($user_id, '_xp_total_ap', true) ;
     $user_gp = get_user_meta($user_id, '_xp_total_gp', true) ;
-    $user_lvl = get_user_meta($user_id, '_xp_total_lvl', true)  ;
+    $user_level = get_user_meta($user_id, '_xp_total_level', true)  ;
 
     $chips = [];
-    $lvl = (object)[];
+    $level = (object)[];
     $xp = (object)[];
     $ap = (object)[];
     $gp = (object)[];
 
-    $lvl->text = "LVL {$user_lvl}";
-    $lvl->icon = "fa-hand-holding-seedling";
-    $lvl->color= "green";
+    $level->text = "level {$user_level}";
+    $level->icon = "fa-hand-holding-seedling";
+    $level->color= "green";
 
 
     $xp->text = "XP {$user_xp}";
@@ -362,7 +362,7 @@ class Xophz_Compass_Xp_Admin {
     $chips[] = $xp;
     $chips[] = $gp;
     $chips[] = $ap;
-    $chips[] = $lvl;
+    $chips[] = $level;
 
     Xophz_Compass::output_json([
       'chips' => $chips 
@@ -476,10 +476,10 @@ class Xophz_Compass_Xp_Admin {
 
     $meta_ = "_xp_total_";
 
-    update_user_meta($userId, "{$meta_}lvl", $args->lvl);
+    update_user_meta($userId, "{$meta_}level", $args->level);
 
     Xophz_Compass::output_json([
-      'lvl' => get_user_meta($userId, $meta_.'lvl',true)
+      'level' => get_user_meta($userId, $meta_.'level',true)
     ]);
   }
 
@@ -492,14 +492,14 @@ class Xophz_Compass_Xp_Admin {
     $xp =  get_user_meta($userId, "{$meta_}xp", true);
     $ap =  get_user_meta($userId, "{$meta_}ap", true);
     $gp =  get_user_meta($userId, "{$meta_}gp", true);
-    $lvl =  get_user_meta($userId, "{$meta_}lvl", true);
+    $level =  get_user_meta($userId, "{$meta_}level", true);
 
     $user = [
       'id' => (int) $id,
       'xp' => (int) $xp,
       'ap' => (int) $ap,
       'gp' => (int) $gp,
-      'level' => (int) $lvl,
+      'level' => (int) $level,
     ];
 
     if(!$output_json)
