@@ -54,7 +54,7 @@ class Xophz_Compass_Xp_Admin {
     // 'wp_ajax_list_jobs' => 'listJobs',
     'admin_menu' => 'addToMenu',
     'user_admin_menu' => 'addToMenu' ,
-    'woocommerce_prevent_admin_access' => '__return_false',
+    'woocommerce_prevent_admin_access' => 'preventAdminAccess',
     'wp_ajax_level_up' => 'levelUp',
     'wp_ajax_list_billboard_chips' => 'listBillboardChips',
     'wp_ajax_xp_get_user' => 'getUser',
@@ -72,6 +72,18 @@ class Xophz_Compass_Xp_Admin {
     $this->plugin_name = $plugin_name;
     $this->version = $version;
   }
+
+  /**
+   * undocumented function
+   *
+   * @return void
+   */
+  public function preventAdminAccess()
+  {
+    return false;
+  }
+  
+  
 
   /**
   * Add menu item 
