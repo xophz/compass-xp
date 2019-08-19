@@ -505,13 +505,27 @@ class Xophz_Compass_Xp_Admin {
     $ap =  get_user_meta($userId, "{$meta_}ap", true);
     $gp =  get_user_meta($userId, "{$meta_}gp", true);
     $level =  get_user_meta($userId, "{$meta_}level", true);
+    $birthdate = get_user_meta($userId, "_xp_birthdate", true);
 
+    // Declare and define two dates 
+    $date1 = strtotime($birthdate);  
+    $date2 = strtotime("NOW");  
+      
+    // Formulate the Difference between two dates 
+    $diff = abs($date2 - $date1);  
+      
+    // To get the year divide the resultant date into 
+    // total seconds in a year (365*60*60*24) 
+    $years = floor($diff / (365*60*60*24));  
+      
     $user = [
       'id' => (int) $id,
       'xp' => (int) $xp,
       'ap' => (int) $ap,
       'gp' => (int) $gp,
       'level' => (int) $level,
+      'age' => $years, 
+      'birthdate' => $birthdate
     ];
 
     if(!$output_json)

@@ -31,6 +31,7 @@ class Xophz_Compass_Xp_Players {
 
   public  $action_hooks = [
     'wp_ajax_xp_list_players' => 'listPlayers',
+    'wp_ajax_xp_start_player' => 'startPlayer',
   ];
 
   /**
@@ -76,4 +77,23 @@ class Xophz_Compass_Xp_Players {
 
     Xophz_Compass::output_json($out);
   }
+
+  /**
+   * undocumented function
+   *
+   * @return void
+   */
+  public function startPlayer()
+  {
+    $args = Xophz_Compass::get_input_json();
+
+
+    $role = 'achiever';
+    $userId = get_current_user_id();
+    $theUser = new WP_User($userId);
+    $theUser->add_role( $role );
+    update_user_meta($userId, "_xp_birthdate", $args->birthdate);
+    Xophz_Compass::output_json($out);
+  }
+  
 }
