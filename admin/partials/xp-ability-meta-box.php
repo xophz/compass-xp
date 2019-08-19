@@ -54,8 +54,8 @@ Minimum AP
   >
     Year
   </option>
-  <option value="all"
-    <?= $repeat == 'all' ? 'selected' : false ?>
+  <option value="alltime"
+    <?= $repeat == 'alltime' ? 'selected' : false ?>
   >
     All Time
   </option>
