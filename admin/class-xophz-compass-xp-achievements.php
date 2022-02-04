@@ -40,21 +40,35 @@ class Xophz_Compass_Xp_Achievements {
   */
   private $version;
 
-  public  $action_hooks = [
+  private $action_hooks = [
     'init' => [
       'create_achievement_taxonomy',
       'codex_achievement_init',
     ],
-    'add_meta_boxes' => 'meta_boxes',
+    'add_meta_boxes'                     => 'meta_boxes',
     'manage_edit-xp_achievement_columns' => 'xp_achievement_columns',
-    'manage_pages_custom_column' => 'achievement_custom_column',
-    'manage_posts_custom_column' => 'achievement_custom_column',
-    'save_post' => 'xp_achievement_xp_box_save',
-    'wp_ajax_list_achievements' => 'listAchievements',
-    'wp_ajax_list_categories' => 'listCategories',
-    'wp_ajax_xp_complete_achievement' => 'completeAchievement',
-    'wp_ajax_xp_add_new_category' => 'addNewCategory',
+    'manage_pages_custom_column'         => 'achievement_custom_column',
+    'manage_posts_custom_column'         => 'achievement_custom_column',
+    'save_post'                          => 'xp_achievement_xp_box_save',
+    'wp_ajax_list_achievements'          => 'listAchievements',
+    'wp_ajax_list_categories'            => 'listCategories',
+    'wp_ajax_xp_complete_achievement'    => 'completeAchievement',
+    'wp_ajax_xp_add_new_category'        => 'addNewCategory',
+    'rest_api_init'                      => 'register_meta_keys'
   ];
+
+ public $meta_keys = [
+   '_xp_achievement_' => [
+      "ap",
+      "gp",
+      "xp",
+      "max_redo_limit",
+      "repeat_count",
+      "repeat_every",
+      "repeat_on",
+      "max_redo_limit",
+   ]
+ ];
 
   /**
   * Initialize the class and set its properties.
@@ -211,18 +225,23 @@ class Xophz_Compass_Xp_Achievements {
 
     switch($post->post_type){
       case 'xp_achievement':
-        $key_ = "_xp_achievement_";
+        foreach($this->meta_keys as $key => $keys ){
+          foreach($keys as $name){
+            $keys[] = "{$key}{$name}";
+          }
+        }
+        // $key_ = "_xp_achievement_";
 
-        $keys = [
-          "{$key_}ap",
-          "{$key_}gp",
-          "{$key_}xp",
-          "{$key_}max_redo_limit",
-          "{$key_}repeat_count",
-          "{$key_}repeat_every",
-          "{$key_}repeat_on",
-          "{$key_}max_redo_limit",
-        ];
+        // $keys = [
+        //   "{$key_}ap",
+        //   "{$key_}gp",
+        //   "{$key_}xp",
+        //   "{$key_}max_redo_limit",
+        //   "{$key_}repeat_count",
+        //   "{$key_}repeat_every",
+        //   "{$key_}repeat_on",
+        //   "{$key_}max_redo_limit",
+        // ];
       break;
       case 'xp_ability':
         $key_ = "_xp_ability_";
@@ -251,12 +270,24 @@ class Xophz_Compass_Xp_Achievements {
     return;
   }
 
+  public function register_meta_keys(){
+    foreach($this->meta_keys as $key => $keys ){
+      foreach($keys as $name){
+        register_meta('post', "{$key}{$name}",[
+          'show_in_rest' => true,
+          'single'       => true,
+          // 'type'         => $meta['type'],
+          // 'description'  => $meta['description'],
+        ]);
+      }
+    }
+  }
+
   public function xp_achievement_repeat_box_content(){
     require('partials/achievement-repeat-box.php');
   }
 
   public function xp_achievement_xp_box_content($post){
-    echo "helo";
     require('partials/achievement-xp-rewards-box.php');
   }
 
