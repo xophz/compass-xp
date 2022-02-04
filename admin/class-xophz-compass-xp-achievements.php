@@ -40,6 +40,8 @@ class Xophz_Compass_Xp_Achievements {
   */
   private $version;
 
+  private $post_type = "xp_achievement";
+
   public $action_hooks = [
     'init' => [
       'create_achievement_taxonomy',
@@ -116,7 +118,7 @@ class Xophz_Compass_Xp_Achievements {
 
     $args = array(
       'labels'             => $labels,
-      'description'        => __( 'Description.', 'xp_achievement' ),
+      'description'        => __( 'Description.', $this->post_type ),
       'public'             => true,
       'publicly_queryable' => true,
       'show_ui'            => true,
@@ -139,7 +141,7 @@ class Xophz_Compass_Xp_Achievements {
       )
     );
 
-    register_post_type( 'xp_achievement', $args );
+    register_post_type( $this->post_type, $args );
   }
 
   public function create_achievement_taxonomy() {
@@ -163,7 +165,7 @@ class Xophz_Compass_Xp_Achievements {
 
     register_taxonomy(
       'xp_achievement_category',
-      'xp_achievement',
+      $this->post_type,
       array(
         'label' => __( 'Achievement Class' ),
         'hierarchical' => true,
@@ -184,7 +186,7 @@ class Xophz_Compass_Xp_Achievements {
       'xp_achievement_xp_box',
       __( 'XP Rewards', 'xophz-compass-xp' ),
       [Xophz_Compass_Xp_Achievements,'xp_achievement_xp_box_content'],
-      'xp_achievement',
+      $this->post_type,
       'side',
       'high'
     );
@@ -193,7 +195,7 @@ class Xophz_Compass_Xp_Achievements {
       'achievement_xp_repeat_box',
       __( 'Achievement Time Table', 'xophz-compass-xp' ),
       [Xophz_Compass_Xp_Achievements,'xp_achievement_repeat_box_content'],
-      'xp_achievement',
+      $this->post_type,
       'side',
       'high'
     );
@@ -224,7 +226,7 @@ class Xophz_Compass_Xp_Achievements {
     return;
 
     switch($post->post_type){
-      case 'xp_achievement':
+      case $this->post_type:
         foreach($this->meta_keys as $key => $keys ){
           foreach($keys as $name){
             $keys[] = "{$key}{$name}";
@@ -276,7 +278,7 @@ class Xophz_Compass_Xp_Achievements {
         register_meta('post', "{$key}{$name}",[
           'show_in_rest' => true,
           'single'       => true,
-          // 'type'         => $meta['type'],
+          'type'         => $this->post_type,
           // 'description'  => $meta['description'],
         ]);
       }
@@ -387,7 +389,7 @@ class Xophz_Compass_Xp_Achievements {
       // 'exclude'          => $completed,
       // 'meta_key'         => '',
       // 'meta_value'       => '',
-      'post_type'        => 'xp_achievement',
+      'post_type'        => $this->post_type,
       // 'post_mime_type'   => '',
       // 'post_parent'      => '',
       // 'author'	   => '',
