@@ -93,6 +93,7 @@ class Xophz_Compass_Xp_Abilities {
       'publicly_queryable' => true,
       'show_ui'            => true,
       'show_in_menu'       => true,
+      'show_in_rest'       => true,
       'query_var'          => true,
       'rewrite'            => array( 'slug' => 'ability','with_front' => false ),
       'capability_type'    => 'post',

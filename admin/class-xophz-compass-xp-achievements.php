@@ -107,6 +107,7 @@ class Xophz_Compass_Xp_Achievements {
       'publicly_queryable' => true,
       'show_ui'            => true,
       'show_in_menu'       => true,
+      'show_in_rest'       => true,
       'query_var'          => true,
       'rewrite'            => array( 'slug' => 'xp/achievement' ),
       'capability_type'    => 'post',
