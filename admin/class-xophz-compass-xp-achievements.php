@@ -40,7 +40,7 @@ class Xophz_Compass_Xp_Achievements {
   */
   private $version;
 
-  private $action_hooks = [
+  public $action_hooks = [
     'init' => [
       'create_achievement_taxonomy',
       'codex_achievement_init',
