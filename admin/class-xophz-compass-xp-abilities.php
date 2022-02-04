@@ -106,6 +106,7 @@ class Xophz_Compass_Xp_Abilities {
         'editor', 
         'author', 
         'thumbnail', 
+        'custom-fields',
         'page-attributes' /* This will show the post parent field */,
       )
     );

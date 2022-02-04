@@ -120,6 +120,7 @@ class Xophz_Compass_Xp_Achievements {
         'editor', 
         'author', 
         'thumbnail', 
+        'custom-fields',
         'page-attributes' /* This will show the post parent field */,
       )
     );
