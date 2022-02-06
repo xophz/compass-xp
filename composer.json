@@ -1,0 +1,17 @@
+{
+    "name": "xophz/xophz-compass-xp",
+    "description": "XP plugin",
+    "type": "wordpress-plugin",
+    "autoload": {
+        "psr-4": {
+            "Xophz\\CompassXp\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "xophz",
+            "email": "heylisten@xtiv.net"
+        }
+    ],
+    "require": {}
+}
